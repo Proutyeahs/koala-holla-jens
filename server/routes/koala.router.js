@@ -36,7 +36,7 @@ koalaRouter.get('/', function(req, res) {
 });
 
 // POST
-router.post('/', (req, res) => {
+koalaRouter.post('/', (req, res) => {
     let queryText = `
         INSERT INTO "koalas" ("name", "age", "gender", "ready_to_transfer", "notes")
         VALUES ($1, $2, $3, $4, $5);`;
