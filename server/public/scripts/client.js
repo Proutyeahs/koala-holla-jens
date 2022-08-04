@@ -40,7 +40,7 @@ function getKoalas(){
     method: 'GET',
     url: '/koalas'
   }).then(function (response) {
-    appendKoalas()
+    appendKoalas(response)
   }).catch(function(err) {
     console.log(err)
     alert('Error in GET')
@@ -51,4 +51,9 @@ function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
   // ajax call to server to get koalas
  
+}
+
+function appendKoalas(response) {
+  console.log(response);
+  
 }
