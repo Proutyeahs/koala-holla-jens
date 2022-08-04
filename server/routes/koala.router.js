@@ -32,11 +32,31 @@ koalaRouter.get('/', (req, res) => {
         }).catch(err => {
             console.log('GET error', err);
             res.sendStatus(500);
-        });
+
+        })
 });
 
 // POST
+koalaRouter.post('/', (req, res) => {
+    let queryText = `
+        INSERT INTO "koalas" ("name", "age", "gender", "ready_to_transfer", "notes")
+        VALUES ($1, $2, $3, $4, $5);`;
+    let queryValues = [
+        req.body.name,
+        req.body.age,
+        req.body.gender,
+        req.body.ready_to_transfer,
+        req.body.notes
+    ]
 
+    pool.query(queryText, queryValues)
+        .then( result => {
+            res.sendStatus(200);
+        }).catch( (err) => {
+            console.log(err)
+            res.sendStatus(500) //send 500
+        })
+});
 
 // PUT
 
