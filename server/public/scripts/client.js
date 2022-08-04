@@ -9,6 +9,9 @@ $( document ).ready( function(){
 
 }); // end doc ready
 
+
+// CLICK LISTENERS //
+
 function setupClickListeners() {
   $( '#addButton' ).on( 'click', function(){
     console.log( 'in addButton on click' );
@@ -25,12 +28,23 @@ function setupClickListeners() {
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
   }); 
-}
+} // end click listeners
+
+
+// FUNCTIONS //
 
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
-  
+  $.ajax({
+    method: 'GET',
+    url: '/koalas'
+  }).then(function (response) {
+    appendKoalas()
+  }).catch(function(err) {
+    console.log(err)
+    alert('Error in GET')
+  })
 } // end getKoalas
 
 function saveKoala( newKoala ){
