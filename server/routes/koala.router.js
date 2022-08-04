@@ -22,7 +22,7 @@ pool.on('error', (error) => {
 });
 
 // GET
-koalaRouter.get('/'), function(req, res) {
+koalaRouter.get('/', function(req, res) {
     console.log('in GET');
     const query = 'SELECT * FROM "koalas";';
     pool.query(query)
@@ -33,7 +33,7 @@ koalaRouter.get('/'), function(req, res) {
             console.log('GET error', err);
             res.sendStatus(500);
         })
-}
+});
 
 // POST
 router.post('/', (req, res) => {
