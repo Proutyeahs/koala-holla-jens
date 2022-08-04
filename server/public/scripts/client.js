@@ -40,10 +40,11 @@ function getKoalas(){
     method: 'GET',
     url: '/koalas'
   }).then(function (response) {
-    appendKoalas()
+    console.log(response);
+    appendKoalas(response);
   }).catch(function(err) {
-    console.log(err)
-    alert('Error in GET')
+    console.log(err);
+    alert('Error in GET');
   })
 } // end getKoalas
 
@@ -51,4 +52,38 @@ function saveKoala( newKoala ){
   console.log( 'in saveKoala', newKoala );
   // ajax call to server to get koalas
  
+}
+
+function appendKoalas(koalas) {
+  console.log('appending koalas');
+  $('#viewKoalas').empty();
+  for (let koala of koalas) {
+    if (koala.ready_to_transfer === true) {
+      $('#viewKoalas').append(`
+        <tr data-id=${koala.id}>
+          <td>${koala.name}</td>
+          <td>${koala.age}</td>
+          <td>${koala.gender}</td>
+          <td>${koala.ready_to_transfer}</td>
+          <td>${koala.notes}</td>
+          <td>Ready!</td>
+          <td><button class=deleteBtn>Delete</button>
+        </tr>
+      `)
+    } else {
+      $('#viewKoalas').append(`
+        <tr data-id=${koala.id}>
+          <td>${koala.name}</td>
+          <td>${koala.age}</td>
+          <td>${koala.gender}</td>
+          <td>${koala.ready_to_transfer}</td>
+          <td>${koala.notes}</td>
+          <td><button class="transferBtn">Ready to Transfer</button></td>
+          <td><button class="deleteBtn">Delete</button></td>
+        </tr>
+      `) 
+    }
+  }
+
+
 }
