@@ -6,7 +6,6 @@ $( document ).ready( function(){
   setupClickListeners()
   // load existing koalas on page load
   getKoalas();
-
 }); // end doc ready
 
 
@@ -29,6 +28,7 @@ function setupClickListeners() {
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
   }); 
+  $('#viewKoalas').on('click', '.deleteBtn', handleDelete);
 } // end click listeners
 
 
@@ -63,7 +63,6 @@ function saveKoala( newKoala ){
     console.log(err)
     alert('Error in POST')
   });
- 
 }
 
 function appendKoalas(koalas) {
@@ -97,6 +96,25 @@ function appendKoalas(koalas) {
     }
   }
 }
+
+function handleDelete() {
+  console.log('deleted');
+
+  const id = $(this).closest('tr').data('id');
+  console.log(id);
+
+  $.ajax({
+    method: 'DELETE',
+    url: `/koalas/${id}`
+  }).then(function(response) {
+    console.log(response)
+    getKoalas(response);
+  }).catch(function(err) {
+    console.log(err);
+    alert('Error in Delete...')
+  });
+}
+
 // PUT
 
 // When the user clicks on the button that calls this function, it should update the database for the specific Koala. 
