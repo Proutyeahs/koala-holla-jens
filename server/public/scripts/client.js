@@ -12,6 +12,7 @@ $( document ).ready( function(){
 // CLICK LISTENERS //
 
 function setupClickListeners() {
+  $('#viewKoalas').on('click', '.transferBtn', markReadyToTransfer);
   $( '#addButton' ).on( 'click', function(){
     console.log( 'in addButton on click' );
     // get user input and put in an object
@@ -112,4 +113,28 @@ function handleDelete() {
     console.log(err);
     alert('Error in Delete...')
   });
+}
+
+// PUT
+
+// When the user clicks on the button that calls this function, it should update the database for the specific Koala. 
+function markReadyToTransfer(){
+  console.log('This button will change the database value from Ready to Transfer to Ready!');
+  const id = $(this).closest('tr').data('id');
+  const ready_to_transfer = $(this).text();
+  console.log(ready_to_transfer)
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${id}`,
+    data: {
+      ready_to_transfer : true
+    } // don't need the data technically.
+  }).then(function(response){
+    console.log(response);
+    // console.log(response.ready_to_transfer)
+    getKoalas();
+  }).catch(function(err){
+    console.log(err);
+    alert('error in the markReadyToTransfer function.');
+  })
 }
