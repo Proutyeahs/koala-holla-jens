@@ -1,0 +1,31 @@
+header {
+    background: midnightblue;
+    color: white;
+    font-size: 30 px;
+    width: 100%;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 60px;
+}
+body {
+    margin: 0px;
+}
+
+img {
+    max-width: 10%;
+    max-height:10%;
+    float: left;
+    top: 10px;
+    padding-left: 20px;
+}
+
+h1, h2, h3 {
+    float: center;
+}
+
+.addKoala {
+   
+    position: relative;
+
+}
