@@ -45,10 +45,10 @@ koalaRouter.post('/', (req, res) => {
         req.body.name,
         req.body.age,
         req.body.gender,
-        Boolean(req.body.ready_to_transfer),
+        req.body.readyForTransfer,
         req.body.notes
     ]
-
+    console.log(req.body)
     pool.query(queryText, queryValues)
         .then( result => {
             res.sendStatus(200);
